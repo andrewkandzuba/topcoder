@@ -11,23 +11,6 @@ const (
 	userNameInvalidContentErrorMessage = "User name contains illigal symbols"
 )
 
-func BuildDB(existingNames []string) map[string]int {
-
-	db := make(map[string]int)
-
-	for _, name := range existingNames {
-		counter, ok := db[name]
-		if (!ok) {
-			counter = 0
-		}
-		db[name] = counter + 1
-	}
-
-	fmt.Println(db)
-
-	return db
-}
-
 func PrintNewName(newName string) {
 
 	r, err := NewMember(newName)

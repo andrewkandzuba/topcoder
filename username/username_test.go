@@ -9,7 +9,7 @@ import (
 func TestNewMember(t *testing.T) {
 
 
-/*	u.PrintNewName("test")
+	u.PrintNewName("test")
 
 	u.PrintNewName("test2")
 
@@ -25,5 +25,5 @@ func TestNewMember(t *testing.T) {
 	for i := 0; i < 51; i++ {
 		longName += "a";
 	}
-	u.PrintNewName(longName)*/
+	u.PrintNewName(longName)
 }

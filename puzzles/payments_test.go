@@ -30,11 +30,11 @@ Outgoing amounts:
 	 */
 
 	incoming := []int{100, 100, 225, 300, 473, 80}
-	outgoing := []int{180, 773, 225, 100}
-	//outgoing := []int{773, 225, 100}
+	//outgoing := []int{180, 773, 225, 100}
+	outgoing := []int{180}
 
 	for _, amount := range outgoing {
-		comprised := calc(incoming, amount)
+		comprised := findComprise(incoming, amount)
 		fmt.Println(comprised)
 	}
 }

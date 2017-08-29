@@ -1,4 +1,4 @@
-package sets
+package datatypes
 
 type Set interface {
 	add()

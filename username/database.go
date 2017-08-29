@@ -9,7 +9,7 @@ func NewDatabase(existingNames []string) *Database {
 
 	for _, name := range existingNames {
 		counter, ok := names[name]
-		if (!ok) {
+		if !ok {
 			counter = 0
 		}
 		names[name] = counter + 1

@@ -1,13 +1,15 @@
 package datatypes
 
 const (
-	SORTED_SET_HEIGHT int = 32
+	SKIPLIST_HEIGHT = 32
 )
 
 type SkipList struct {
-	levels [SORTED_SET_HEIGHT]ListNode
+	levels [SKIPLIST_HEIGHT]SkipListEntry
 }
 
 func (sl *SkipList) insert(v int)  {
+	/*for l := range sl.levels {
 
+	}*/
 }

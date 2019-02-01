@@ -28,3 +28,10 @@ atlassian-ide-plugin.xml
 **activemq-data
 **classes
 **build
+*.exe
+*.dll
+*.out
+*.so
+*.dylib
+*.test
+.glide/

@@ -5,25 +5,23 @@ import (
 	//"github.com/stretchr/testify/assert"
 )
 
-
 func TestNewMember(t *testing.T) {
 
+	PrintNewName("test")
 
-	u.PrintNewName("test")
+	PrintNewName("test2")
 
-	u.PrintNewName("test2")
-
-	u.PrintNewName("")
+	PrintNewName("")
 
 	var shortName string
 	for i := 0; i < 50; i++ {
 		shortName += "a";
 	}
-	u.PrintNewName(shortName)
+	PrintNewName(shortName)
 
 	var longName string
 	for i := 0; i < 51; i++ {
 		longName += "a";
 	}
-	u.PrintNewName(longName)
+	PrintNewName(longName)
 }

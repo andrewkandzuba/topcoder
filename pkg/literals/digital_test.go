@@ -1,8 +1,8 @@
 package literals
 
 import (
-	"testing"
 	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 func TestCompare(t *testing.T) {

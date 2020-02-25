@@ -1,9 +1,9 @@
-package main
+package cmd
 
 import (
 	"fmt"
+	"github.com/andrewkandzuba/topcoder/pkg/wiki"
 	"io/ioutil"
-	"topcoder/wiki"
 )
 
 func main() {

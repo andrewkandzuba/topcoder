@@ -2,13 +2,13 @@ package username
 
 import (
 	"errors"
-	"regexp"
 	"fmt"
+	"regexp"
 )
 
 const (
-	userNameInvalidLenErrorMessage = "User name length is invalid"
-	userNameInvalidContentErrorMessage = "User name contains illigal symbols"
+	UserNameInvalidEnerrorMessage      = "User name length is invalid"
+	UserNameInvalidContentErrorMessage = "User name contains illegal symbols"
 )
 
 func PrintNewName(newName string) {
@@ -25,13 +25,13 @@ func NewMember(newName string) (string, error) {
 
 	length := len(newName)
 	if length < 1 || length > 50 {
-		return "", errors.New(userNameInvalidLenErrorMessage)
+		return "", errors.New(UserNameInvalidEnerrorMessage)
 	}
 
 	isAlpha := regexp.MustCompile(`^[A-Za-z]+$`).MatchString
 	if !isAlpha(newName) {
-		return "", errors.New(userNameInvalidContentErrorMessage)
+		return "", errors.New(UserNameInvalidContentErrorMessage)
 	}
 
-	return newName, nil;
+	return newName, nil
 }

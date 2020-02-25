@@ -1,8 +1,8 @@
 package username
 
 import (
-	"testing"
 	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 func TestDatabase(t *testing.T) {

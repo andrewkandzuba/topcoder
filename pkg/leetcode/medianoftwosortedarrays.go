@@ -1,62 +1,6 @@
-package tests
+package leetcode
 
-type Problems struct {
-}
-
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-func (p *Problems) addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
-
-	pr := &ListNode{0, nil}
-
-	p1 := l1
-	p2 := l2
-	pc := pr
-	r := 0
-
-	for p1 != nil || p2 != nil {
-		s := r
-		if p1 != nil {
-			s = s + p1.Val
-			p1 = p1.Next
-		}
-		if p2 != nil {
-			s = s + p2.Val
-			p2 = p2.Next
-		}
-
-		r = s / 10
-
-		pc.Val = s % 10
-		if r > 0 {
-			pc.Next = &ListNode{0, nil}
-			pc = pc.Next
-		}
-	}
-
-	if r > 0 {
-		pc.Next = &ListNode{r, nil}
-		pc = pc.Next
-	}
-
-	return pr
-}
-
-func (p *Problems) twoSum(nums []int, target int) []int {
-	for i := 0; i < len(nums); i++ {
-		for j := 0; j < len(nums); j++ {
-			if j != i && nums[i]+nums[j] == target {
-				return []int{i, j}
-			}
-		}
-	}
-	return nil
-}
-
-func (p *Problems) findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
+func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 	nums1, nums2 = sortByLength(nums1, nums2)
 
 	if len(nums1) == 0 {
@@ -83,11 +27,11 @@ func (p *Problems) findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 		m1, l1, r1 := median(nums1)
 		m2, l2, r2 := median(nums2)
 		if m1 < m2 {
-			p := min(l1, len(nums2) - r2 -1)
+			p := min(l1, len(nums2)-r2-1)
 			nums1 = nums1[p:]
 			nums2 = nums2[:len(nums2)-p]
 		} else {
-			p := min(len(nums1) - r1 -1, l2)
+			p := min(len(nums1)-r1-1, l2)
 			nums1 = nums1[:len(nums1)-p]
 			nums2 = nums2[p:]
 		}

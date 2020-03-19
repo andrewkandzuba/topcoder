@@ -52,3 +52,26 @@ func Test_MedianOfTwoSortedArrays(t *testing.T) {
 	assert.Equal(t, 1.0, findMedianSortedArrays([]int{}, []int{1}))
 	assert.Equal(t, 1.0, findMedianSortedArrays([]int{1}, []int{}))
 }
+
+func Test_Palindrome(t *testing.T) {
+	assert.True(t, isPalindrome(""))
+	assert.True(t, isPalindrome("a"))
+	assert.True(t, isPalindrome("aa"))
+	assert.False(t, isPalindrome("abc"))
+	assert.True(t, isPalindrome("aba"))
+	assert.True(t, isPalindrome("ababa"))
+	assert.False(t, isPalindrome("ababc"))
+	assert.False(t, isPalindrome("abaabc"))
+	assert.True(t, isPalindrome("abaaba"))
+}
+
+func Test_LongestPalindromeSubstring(t *testing.T) {
+	assert.Equal(t, "bab", longestPalindrome("babad"))
+	assert.Equal(t, "a", longestPalindrome("abcd"))
+	assert.Equal(t, "aa", longestPalindrome("aabcd"))
+	assert.Equal(t, "bb", longestPalindrome("abbcd"))
+	assert.Equal(t, "bcb", longestPalindrome("aabcbbzd"))
+	assert.Equal(t, "bcb", longestPalindrome("aazzbcb"))
+	assert.Equal(t, "aaaaaaaaa", longestPalindrome("aaaaaaaaac"))
+	assert.Equal(t, "ddtattarrattatdd", longestPalindrome("babaddtattarrattatddetartrateedredividerb"))
+}

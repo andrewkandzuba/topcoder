@@ -75,3 +75,13 @@ func Test_LongestPalindromeSubstring(t *testing.T) {
 	assert.Equal(t, "aaaaaaaaa", longestPalindrome("aaaaaaaaac"))
 	assert.Equal(t, "ddtattarrattatdd", longestPalindrome("babaddtattarrattatddetartrateedredividerb"))
 }
+
+func Test_ZigZagConvention(t *testing.T) {
+	assert.Equal(t, "", convert("PAYPALISHIRING", 0))
+	assert.Equal(t, "PAYPALISHIRING", convert("PAYPALISHIRING", 1))
+	assert.Equal(t, "PAHNAPLSIIGYIR", convert("PAYPALISHIRING", 3))
+	assert.Equal(t, "PINALSIGYAHRPI", convert("PAYPALISHIRING", 4))
+	assert.Equal(t, "PAYPALISHIRING", convert("PAYPALISHIRING", 14))
+	assert.Equal(t, "ACB", convert("ABC", 2))
+	assert.Equal(t, "ACBD", convert("ABCD", 2))
+}

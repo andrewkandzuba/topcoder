@@ -75,3 +75,20 @@ func Test_LongestPalindromeSubstring(t *testing.T) {
 	assert.Equal(t, "aaaaaaaaa", longestPalindrome("aaaaaaaaac"))
 	assert.Equal(t, "ddtattarrattatdd", longestPalindrome("babaddtattarrattatddetartrateedredividerb"))
 }
+
+func Test_MaxArea(t *testing.T) {
+	assert.Equal(t, 1, maxArea([]int{1,1}))
+	assert.Equal(t, 0, maxArea([]int{0,1}))
+	assert.Equal(t, 1, maxArea([]int{0,1,2}))
+	assert.Equal(t, 2, maxArea([]int{2,1,1}))
+	assert.Equal(t, 2, maxArea([]int{1,1,1}))
+	assert.Equal(t, 2, maxArea([]int{1,2,1}))
+	assert.Equal(t, 2, maxArea([]int{1,0,1}))
+	assert.Equal(t, 49, maxArea([]int{1,8,6,2,5,4,8,3,7}))
+	assert.Equal(t, 6, maxArea([]int{1,0,0,0,0,0,8,0,0}))
+	assert.Equal(t, 2, maxArea([]int{0,0,0,2,0,1,0,0,0}))
+	assert.Equal(t, 0, maxArea([]int{0,0,0,0,0,0,0,0,0}))
+	assert.Equal(t, 0, maxArea([]int{0,0,0,0,1,0,0,0,0}))
+	assert.Equal(t, 17, maxArea([]int{2,3,4,5,18,17,6}))
+	assert.Equal(t, 25, maxArea([]int{1,3,2,5,25,24,5}))
+}

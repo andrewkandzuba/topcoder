@@ -76,6 +76,37 @@ func Test_LongestPalindromeSubstring(t *testing.T) {
 	assert.Equal(t, "ddtattarrattatdd", longestPalindrome("babaddtattarrattatddetartrateedredividerb"))
 }
 
+func Test_ZigZagConvention(t *testing.T) {
+	assert.Equal(t, "", convert("PAYPALISHIRING", 0))
+	assert.Equal(t, "PAYPALISHIRING", convert("PAYPALISHIRING", 1))
+	assert.Equal(t, "PAHNAPLSIIGYIR", convert("PAYPALISHIRING", 3))
+	assert.Equal(t, "PINALSIGYAHRPI", convert("PAYPALISHIRING", 4))
+	assert.Equal(t, "PAYPALISHIRING", convert("PAYPALISHIRING", 14))
+	assert.Equal(t, "ACB", convert("ABC", 2))
+	assert.Equal(t, "ACBD", convert("ABCD", 2))
+}
+
+func Test_Atoi(t *testing.T)  {
+	assert.Equal(t, 0, myAtoi(""))
+	assert.Equal(t, 0, myAtoi("    "))
+	assert.Equal(t, 0, myAtoi("  $$ && () - "))
+	assert.Equal(t, 0, myAtoi("  $$23 && () - "))
+	assert.Equal(t, 0, myAtoi("  $$-23 && () - "))
+	assert.Equal(t, 0, myAtoi("  $$- 23 && () - "))
+	assert.Equal(t, 23, myAtoi("  23 && () - "))
+	assert.Equal(t, -23, myAtoi(" -23 && () - "))
+	assert.Equal(t, 23, myAtoi("  +23 && () - "))
+	assert.Equal(t, 23, myAtoi("23"))
+	assert.Equal(t, -23, myAtoi("-23"))
+	assert.Equal(t, 0, myAtoi("words and 987"))
+	assert.Equal(t, 2147483647, myAtoi(" 2147483647 dfsgdfg"))
+	assert.Equal(t, 2147483647, myAtoi(" 2147483647000 dfsgdfg"))
+	assert.Equal(t, -2147483648, myAtoi("  -2147483648 "))
+	assert.Equal(t, -2147483648, myAtoi("  -2147483640008 "))
+	assert.Equal(t, -2147483648, myAtoi("-91283472332"))
+	assert.Equal(t, 0, myAtoi("+-2"))
+}
+
 func Test_MaxArea(t *testing.T) {
 	assert.Equal(t, 1, maxArea([]int{1,1}))
 	assert.Equal(t, 0, maxArea([]int{0,1}))

@@ -108,6 +108,7 @@ func Test_Atoi(t *testing.T)  {
 }
 
 func Test_MaxArea(t *testing.T) {
+	assert.Equal(t, 0, maxArea([]int{0,0}))
 	assert.Equal(t, 1, maxArea([]int{1,1}))
 	assert.Equal(t, 0, maxArea([]int{0,1}))
 	assert.Equal(t, 1, maxArea([]int{0,1,2}))
@@ -121,5 +122,10 @@ func Test_MaxArea(t *testing.T) {
 	assert.Equal(t, 0, maxArea([]int{0,0,0,0,0,0,0,0,0}))
 	assert.Equal(t, 0, maxArea([]int{0,0,0,0,1,0,0,0,0}))
 	assert.Equal(t, 17, maxArea([]int{2,3,4,5,18,17,6}))
-	assert.Equal(t, 25, maxArea([]int{1,3,2,5,25,24,5}))
+	assert.Equal(t, 24, maxArea([]int{1,3,2,5,25,24,5}))
+	assert.Equal(t, 1, maxArea([]int{0,0,0,0,0,8,1}))
+	assert.Equal(t, 2, maxArea([]int{0,0,0,0,8,0,1}))
+	assert.Equal(t, 1, maxArea([]int{1,8,0,0,0,0,0}))
+	assert.Equal(t, 2, maxArea([]int{1,0,8,0,0,0,0}))
+	assert.Equal(t, 48, maxArea([]int{8,0,1,0,0,0,8}))
 }

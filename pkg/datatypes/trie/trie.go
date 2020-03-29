@@ -1,47 +1,48 @@
 package trie
 
 const(
-	MAX_CHAR = 26
-	START_CHAR = 'a'
+	MaxChar   = 26
+	StartChar = 'A'
 )
 
-
-type Index struct {
-	root *Node
-}
-
 type Node struct {
-	children []*Node
-	isLeaf   bool
-	score    int
+	Children []*Node
+	Pos      int
+	Score    int
 }
 
-func NewIndex() *Index {
-	return &Index{
-		root: &Node{
-			children: make([]*Node, MAX_CHAR),
-			isLeaf:   false,
-			score:    0,
-		},
+func newNode() *Node {
+	return &Node{
+		Children: make([]*Node, MaxChar),
+		Pos:      -1,
 	}
 }
 
-func (index *Index) Insert(str string) {
-	children := index.root.children
+type Index struct {
+	Root *Node
+}
+
+func NewIndex() *Index {
+	return &Index{newNode()}
+}
+
+func (index *Index) Insert(str string, pos int) {
+	children := index.Root.Children
+	totalScore := 0
 	for i := 0; i < len(str); i++ {
-		c := str[i] - START_CHAR
+		c := str[i] - StartChar
+		totalScore += int(c) + 1
 		n := children[c]
 		if n == nil {
-			n = &Node{
-				children: make([]*Node, MAX_CHAR),
-				isLeaf:   false,
-				score:    0,
-			}
+			n = newNode()
 			children[c] = n
 		}
-		children = n.children
+		children = n.Children
 		if i == len(str) - 1 {
-			n.isLeaf = true
+			if n.Pos == -1 {
+				n.Pos = pos
+				n.Score = totalScore
+			}
 		}
 	}
 }
@@ -51,7 +52,7 @@ func (index *Index) Search(word string) bool {
 	if n == nil {
 		return false
 	}
-	return n.isLeaf
+	return n.Pos != -1
 }
 
 func (index *Index) SearchPrefix(prefix string) bool {
@@ -60,19 +61,18 @@ func (index *Index) SearchPrefix(prefix string) bool {
 }
 
 func (index *Index) findNode(str string) *Node {
-	t := index.root
+	t := index.Root
 	for i:=0; i < len(str); i++ {
-		c := str[i] - START_CHAR
-		if t.children[c] != nil {
-			t = t.children[c]
+		c := str[i] - StartChar
+		if t.Children[c] != nil {
+			t = t.Children[c]
 		} else {
 			return nil
 		}
 	}
-	if t == index.root {
+	if t == index.Root {
 		return nil
 	}
 	return t
 }
-
 

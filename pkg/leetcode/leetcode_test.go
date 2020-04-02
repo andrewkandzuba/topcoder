@@ -129,3 +129,12 @@ func Test_MaxArea(t *testing.T) {
 	assert.Equal(t, 2, maxArea([]int{1,0,8,0,0,0,0}))
 	assert.Equal(t, 48, maxArea([]int{8,0,1,0,0,0,8}))
 }
+
+func Test_TreeSum(t *testing.T) {
+	assert.Equal(t, [][]int{}, threeSum([]int{0}))
+	assert.Equal(t, [][]int{{0, 0}}, threeSum([]int{0, 0}))
+	assert.Equal(t, [][]int{{1, -1}}, threeSum([]int{1, 0, -1}))
+	assert.Equal(t, [][]int{{1, -1}}, threeSum([]int{0, 1, -1}))
+	//assert.Equal(t, [][]int{{1, -1}, {0, 0}}, threeSum([]int{0, 1, 0, -1, 0}))
+	assert.Equal(t, [][]int{{1, -1}, {0, 0}, {100, -100}}, threeSum([]int{0, 1, 0, -1, 0, 100, -100}))
+}

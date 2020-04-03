@@ -1,33 +1,49 @@
 package sort
 
 func MergeSort(A []int) []int {
-	var B = make([]int, len(A))
-	copy(A, B)
-	split(B, 0, len(A), A)
+	mergeSort(A, 0, len(A)-1)
 	return A
 }
 
-func split(A []int, iBegin int, iEnd int, B []int) {
-	if iEnd-iBegin < 2 {
-		return
+func mergeSort(A []int, l int, r int) {
+	if l < r {
+		var m = l + (r-l)/2
+		mergeSort(A, l, m)
+		mergeSort(A, m+1, r)
+		merge(A, l, m, r)
 	}
-	var iMid = (iEnd + iBegin) / 2
-	split(A, iBegin, iMid, B)
-	split(A, iMid, iEnd, B)
-	merge(B, iBegin, iMid, iEnd, A)
 }
 
-func merge(A []int, iBegin int, iMid int, iEnd int, B []int) {
-	var i = iBegin
-	var j = iMid
+func merge(A []int, l, m, r int) {
+	var L = make([]int, m-l+1)
+	var R = make([]int, r-m)
 
-	for k := iBegin; k < iEnd; k++{
-		if i < iMid && (j >= iEnd || A[i] <= A[j]) {
-			B[k] = A[i]
-			i = i + 1
+	var i = 0
+	var j = 0
+	var k = l
+
+	copy(L, A[l:m+1])
+	copy(R, A[m+1:r+1])
+
+	for i < len(L) && j < len(R) {
+		if L[i] < R[j] {
+			A[k] = L[i]
+			i++
 		} else {
-			B[k] = A[j]
-			j = j + 1
+			A[k] = R[j]
+			j++
 		}
+		k++
+	}
+
+	for i < len(L) {
+		A[k] = L[i]
+		i++
+		k++
+	}
+	for j < len(R) {
+		A[k] = R[j]
+		j++
+		k++
 	}
 }

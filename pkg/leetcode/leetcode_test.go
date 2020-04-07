@@ -144,3 +144,16 @@ func Test_TreeSum(t *testing.T) {
 	assert.Equal(t, [][]int{{-2,0,2},{-2,1,1}}, threeSum([]int{-2,0,1,1,2}))
 	assert.Equal(t, [][]int{{-4,-2,6},{-4,0,4},{-4,1,3},{-4,2,2},{-2,-2,4},{-2,0,2}}, threeSum([]int{-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6}))
 }
+
+func TestLetterCombinations(t *testing.T) {
+	assert.Equal(t, []string{}, letterCombinations(""))
+	assert.Equal(t, []string{}, letterCombinations("0"))
+	assert.Equal(t, []string{}, letterCombinations("1"))
+	assert.Equal(t, []string{}, letterCombinations("00"))
+	assert.Equal(t, []string{}, letterCombinations("01"))
+	assert.Equal(t, []string{}, letterCombinations("10"))
+	assert.Equal(t, []string{}, letterCombinations("11"))
+	assert.Equal(t, []string{"a", "b", "c"}, letterCombinations("2"))
+	assert.Equal(t, []string{"ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"}, letterCombinations("23"))
+	assert.Equal(t, []string{}, letterCombinations("123"))
+}

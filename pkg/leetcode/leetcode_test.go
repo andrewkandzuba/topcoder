@@ -140,9 +140,9 @@ func Test_TreeSum(t *testing.T) {
 	assert.Equal(t, [][]int{{-1, 0, 1}}, threeSum([]int{0, 1, -1}))
 	assert.Equal(t, [][]int{{-1, 0, 1}, {0, 0, 0}}, threeSum([]int{0, 1, 0, -1, 0}))
 	assert.Equal(t, [][]int{{-100, 0, 100}, {-1, 0, 1}, {0, 0, 0}}, threeSum([]int{0, 1, 0, -1, 0, 100, -100}))
-	assert.Equal(t, [][]int{{-1,-1,2},{-1,0,1}}, threeSum([]int{-1,0,1,2,-1,-4}))
-	assert.Equal(t, [][]int{{-2,0,2},{-2,1,1}}, threeSum([]int{-2,0,1,1,2}))
-	assert.Equal(t, [][]int{{-4,-2,6},{-4,0,4},{-4,1,3},{-4,2,2},{-2,-2,4},{-2,0,2}}, threeSum([]int{-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6}))
+	assert.Equal(t, [][]int{{-1, -1, 2}, {-1, 0, 1}}, threeSum([]int{-1, 0, 1, 2, -1, -4}))
+	assert.Equal(t, [][]int{{-2, 0, 2}, {-2, 1, 1}}, threeSum([]int{-2, 0, 1, 1, 2}))
+	assert.Equal(t, [][]int{{-4, -2, 6}, {-4, 0, 4}, {-4, 1, 3}, {-4, 2, 2}, {-2, -2, 4}, {-2, 0, 2}}, threeSum([]int{-4, -2, -2, -2, 0, 1, 2, 2, 2, 3, 3, 4, 4, 6, 6}))
 }
 
 func TestLetterCombinations(t *testing.T) {
@@ -156,4 +156,40 @@ func TestLetterCombinations(t *testing.T) {
 	assert.Equal(t, []string{"a", "b", "c"}, letterCombinations("2"))
 	assert.Equal(t, []string{"ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"}, letterCombinations("23"))
 	assert.Equal(t, []string{}, letterCombinations("123"))
+}
+
+func TestRemoteNthElement(t *testing.T) {
+	head := arrayToListNodes([]int{1, 2, 3, 4, 5})
+	assert.NotNil(t, head)
+	assert.NotNil(t, head.Next)
+	assert.Equal(t, 1, head.Val)
+	assert.Equal(t, 2, head.Next.Val)
+
+	assert.Equal(t, []int{1, 2, 3, 5}, listNodesToArray(removeNthFromEnd(arrayToListNodes([]int{1, 2, 3, 4, 5}), 2)))
+	assert.Equal(t, []int{}, listNodesToArray(removeNthFromEnd(arrayToListNodes([]int{}), 2)))
+	assert.Equal(t, []int{1, 2, 3, 4}, listNodesToArray(removeNthFromEnd(arrayToListNodes([]int{1, 2, 3, 4, 5}), 5)))
+}
+
+func arrayToListNodes(arr []int) *ListNode {
+	var head, tail *ListNode
+	for _, v := range arr {
+		n := &ListNode{v, nil}
+		if head == nil {
+			head = n
+		}
+		if tail != nil {
+			tail.Next = n
+		}
+		tail = n
+	}
+	return head
+}
+
+func listNodesToArray(head *ListNode) []int {
+	var arr = make([]int, 0)
+	for head != nil {
+		arr = append(arr, head.Val)
+		head = head.Next
+	}
+	return arr
 }

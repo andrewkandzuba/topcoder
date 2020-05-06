@@ -167,7 +167,13 @@ func TestRemoteNthElement(t *testing.T) {
 
 	assert.Equal(t, []int{1, 2, 3, 5}, listNodesToArray(removeNthFromEnd(arrayToListNodes([]int{1, 2, 3, 4, 5}), 2)))
 	assert.Equal(t, []int{}, listNodesToArray(removeNthFromEnd(arrayToListNodes([]int{}), 2)))
-	assert.Equal(t, []int{1, 2, 3, 4}, listNodesToArray(removeNthFromEnd(arrayToListNodes([]int{1, 2, 3, 4, 5}), 5)))
+	assert.Equal(t, []int{2, 3, 4, 5}, listNodesToArray(removeNthFromEnd(arrayToListNodes([]int{1, 2, 3, 4, 5}), 5)))
+	assert.Equal(t, []int{1, 2, 3, 4}, listNodesToArray(removeNthFromEnd(arrayToListNodes([]int{1, 2, 3, 4, 5}), 1)))
+	assert.Equal(t, []int{1, 2, 3, 4, 5}, listNodesToArray(removeNthFromEnd(arrayToListNodes([]int{1, 2, 3, 4, 5}), 19)))
+	assert.Equal(t, []int{}, listNodesToArray(removeNthFromEnd(arrayToListNodes([]int{1}), 1)))
+	assert.Equal(t, []int{1}, listNodesToArray(removeNthFromEnd(arrayToListNodes([]int{1, 2}), 1)))
+	assert.Equal(t, []int{2}, listNodesToArray(removeNthFromEnd(arrayToListNodes([]int{1, 2}), 2)))
+	assert.Equal(t, []int{}, listNodesToArray(removeNthFromEnd(arrayToListNodes([]int{}), 1)))
 }
 
 func arrayToListNodes(arr []int) *ListNode {

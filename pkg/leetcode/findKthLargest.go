@@ -4,7 +4,7 @@ func findKthLargest(nums []int, k int) int {
 	n := len(nums)
 	mergeSort(nums, 0, n-1)
 
-	return nums[max(n-k, 0)]
+	return nums[Max(n-k, 0)]
 }
 
 func mergeSort(A []int, l int, r int) {

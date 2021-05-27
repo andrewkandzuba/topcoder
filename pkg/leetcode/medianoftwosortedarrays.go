@@ -58,7 +58,7 @@ func medianSingleAndTwo(single []int, nums []int) float64 {
 }
 
 func medianTwoAndTwo(nums1 []int, nums2 []int) float64 {
-	m, _, _ := median([]int{min(nums1[0], nums2[0]), max(nums1[0], nums2[0]), min(nums1[1], nums2[1]), max(nums1[1], nums2[1])})
+	m, _, _ := median([]int{min(nums1[0], nums2[0]), Max(nums1[0], nums2[0]), min(nums1[1], nums2[1]), Max(nums1[1], nums2[1])})
 	return m
 }
 
@@ -121,7 +121,7 @@ func min(x, y int) int {
 	return y
 }
 
-func max(x, y int) int {
+func Max(x, y int) int {
 	if x < y {
 		return y
 	}

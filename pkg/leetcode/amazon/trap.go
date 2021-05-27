@@ -1,6 +1,8 @@
-package leetcode
+package amazon
 
-func maxArea(height []int) int {
+import "github.com/andrewkandzuba/topcoder/pkg/leetcode"
+
+func trap(height []int) int {
 
 	sp := 0
 	ep := len(height) - 1
@@ -11,13 +13,13 @@ func maxArea(height []int) int {
 			i := sp
 			for ; i < ep && height[i] <= height[sp]; i++ {
 			}
-			maxV = max(maxV, (ep-sp)*height[sp])
+			maxV = leetcode.Max(maxV, (ep-sp)*height[sp])
 			sp = i
 		} else {
 			j := ep
 			for ; j > sp && height[j] <= height[ep]; j-- {
 			}
-			maxV = max(maxV, (ep-sp)*height[ep])
+			maxV = leetcode.Max(maxV, (ep-sp)*height[ep])
 			ep = j
 		}
 	}

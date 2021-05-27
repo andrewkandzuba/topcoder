@@ -1,27 +1,29 @@
 package amazon
 
-import "github.com/andrewkandzuba/topcoder/pkg/leetcode"
-
 func trap(height []int) int {
+	totalTrapped := 0
 
 	sp := 0
 	ep := len(height) - 1
-	maxV := 0
 
 	for sp < ep {
+		projected := 0
 		if height[sp] < height[ep] {
-			i := sp
-			for ; i < ep && height[i] <= height[sp]; i++ {
+			lp := sp + 1
+			for ep > lp && height[lp] < height[sp] {
+				projected += height[sp] - height[lp]
+				lp++
 			}
-			maxV = leetcode.Max(maxV, (ep-sp)*height[sp])
-			sp = i
+			sp = lp
 		} else {
-			j := ep
-			for ; j > sp && height[j] <= height[ep]; j-- {
+			rp := ep - 1
+			for sp < rp && height[ep] > height[rp] {
+				projected += height[ep] - height[rp]
+				rp--
 			}
-			maxV = leetcode.Max(maxV, (ep-sp)*height[ep])
-			ep = j
+			ep = rp
 		}
+		totalTrapped += projected
 	}
-	return maxV
+	return totalTrapped
 }

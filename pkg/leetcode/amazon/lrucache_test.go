@@ -90,3 +90,46 @@ func Test_LRUCache_Case5(t *testing.T) {
 	assert.EqualValues(t, 1, lRUCache.Get(4))
 	assert.EqualValues(t, -1, lRUCache.Get(2))
 }
+
+func Test_LRUCache_Case6(t *testing.T) {
+
+//["LRUCache","put","put","put","put","get","get","get","get","put","get","get","get","get","get"]
+	//[[3],[1,1],[2,2],[3,3],[4,4],[4],[3],[2],[1],[5,5],[1],[2],[3],[4],[5]]
+	//[null,null,null,null,null,4,3,2,-1,null,-1,2,3,-1,5]
+	lRUCache := Constructor(3)
+
+	lRUCache.Put(1, 1)
+	lRUCache.Put(2, 2)
+	lRUCache.Put(3, 3)
+	lRUCache.Put(4, 4)
+
+	assert.EqualValues(t, 4, lRUCache.Get(4))
+	assert.EqualValues(t, 3, lRUCache.Get(3))
+	assert.EqualValues(t, 2, lRUCache.Get(2))
+	assert.EqualValues(t, -1, lRUCache.Get(1))
+
+	lRUCache.Put(5, 5)
+
+	assert.EqualValues(t, -1, lRUCache.Get(1))
+	assert.EqualValues(t, 2, lRUCache.Get(2))
+	assert.EqualValues(t, 3, lRUCache.Get(3))
+	assert.EqualValues(t, -1, lRUCache.Get(4))
+	assert.EqualValues(t, 5, lRUCache.Get(5))
+}
+
+func Test_LRUCache_Case7(t *testing.T) {
+
+	//["LRUCache","put","put","put","put","get","get","get","get","put","get","get","get","get","get"]
+	//[[3],[1,1],[2,2],[3,3],[4,4],[4],[3],[2],[1],[5,5],[1],[2],[3],[4],[5]]
+	//[null,null,null,null,null,4,3,2,-1,null,-1,2,3,-1,5]
+	lRUCache := Constructor(3)
+
+	lRUCache.Put(3000, 1)
+	lRUCache.Put(3000, 2)
+	lRUCache.Put(2999, 3)
+	lRUCache.Put(2999, 4)
+
+
+	assert.EqualValues(t, 2, lRUCache.Get(3000))
+	assert.EqualValues(t, 4, lRUCache.Get(2999))
+}

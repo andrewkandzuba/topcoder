@@ -2,97 +2,96 @@ package amazon
 
 type LRUCache struct {
 	capacity int
-	head *Node
-	tail *Node
+	head   *Node
+	tail   *Node
 	length int
+	keys   []*Node
 }
 
 func Constructor(capacity int) LRUCache {
 	return LRUCache{
 		capacity: capacity,
-		head: nil,
-		tail: nil,
+		head:   nil,
+		tail:   nil,
 		length: 0,
+		keys:   make([]*Node, MaxSize),
 	}
 }
 
 func (this *LRUCache) Get(key int) int {
-	cur := this.head
-	for cur != nil {
-		if cur.key == key {
-			ret := cur.value
-
-			if this.head == cur {
-				return cur.value
-			} else if this.tail == cur {
-				this.tail = cur.prev
-				this.tail.next = nil
-			}
-
-			this.head.prev = cur
-			cur.next = this.head
-			this.head = cur
-
-			return ret
-		}
-		cur = cur.next
+	found := this.keys[key]
+	if found == nil {
+		return -1
 	}
-	return -1
+
+	this.moveAhead(found)
+
+	return found.value
 }
 
-func (this *LRUCache) Put(key int, value int)  {
-	cur := this.head
-	for cur != nil {
-		if cur.key == key {
-			cur.value = value
-			if this.head == cur {
-				return
-			}
-			if this.tail == cur {
+func (this *LRUCache) Put(key int, value int) {
+	cur := this.keys[key]
+
+	if cur != nil {
+		cur.value = value
+	} else {
+
+		if this.length == this.capacity {
+			if this.head == this.tail {
+				this.keys[this.head.key] = nil
+				this.head = nil
+				this.tail = nil
+			} else {
+				this.keys[this.tail.key] = nil
+				this.tail.prev.next = nil
 				this.tail = this.tail.prev
-				this.tail.next = nil
-				cur.prev = nil
 			}
-			this.head.prev = cur
-			cur.next = this.head
-			this.head = cur
+		} else {
+			this.length++
+		}
+
+		cur = &Node{
+			key:   key,
+			value: value,
+		}
+		this.keys[key] = cur
+	}
+	this.moveAhead(cur)
+}
+
+func (this *LRUCache) moveAhead(node *Node) {
+	if this.head == nil && this.tail == nil {
+		this.head = node
+		this.tail = node
+	} else {
+		if this.head == node {
 			return
 		}
-		cur = cur.next
-	}
-	cur = &Node{
-		key: key,
-		value: value,
-	}
-	if this.length == this.capacity {
-		if this.head == this.tail {
-			this.head = nil
-			this.tail = nil
-		} else {
-			prev := this.tail.prev
-			prev.next = nil
-			this.tail = prev
+		if this.tail == node {
+			this.tail.prev.next = nil
+			this.tail = this.tail.prev
 		}
-	} else {
-		this.length++
-	}
-	if this.head == nil && this.tail == nil {
-		this.head = cur
-		this.tail = cur
-	} else {
-		this.head.prev = cur
-		cur.next = this.head
-		this.head = cur
+		// adjust tail and move found node ahead
+		if node.prev != nil {
+			node.prev.next = node.next
+		}
+		if node.next != nil {
+			node.next.prev = node.prev
+		}
+		node.next = this.head
+		this.head.prev = node
+		this.head = node
 	}
 }
 
 type Node struct {
-	key int
+	key   int
 	value int
-	next *Node
-	prev *Node
+	next  *Node
+	prev  *Node
 }
 
+const MaxSize = 3001
 
 /**
  * Your LRUCache object will be instantiated and called as such:

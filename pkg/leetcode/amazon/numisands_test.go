@@ -55,3 +55,10 @@ func Test_NumIslands_Case6(t *testing.T) {
 		{1},
 	}))
 }
+
+func Test_NumIslands_Case7(t *testing.T) {
+	assert.EqualValues(t, 1, numIslands([][]byte{
+		{1},
+		{1},
+	}))
+}

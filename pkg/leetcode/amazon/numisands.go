@@ -3,7 +3,7 @@ package amazon
 func numIslands(grid [][]byte) int {
 	islands := 0
 	for x := 0; x < len(grid); x++ {
-		for y := 0; y < len(grid); y++ {
+		for y := 0; y < len(grid[0]); y++ {
 			if grid[x][y] == 1 {
 				islands++
 				search(grid, &GridNode{x, y})
